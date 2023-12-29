@@ -8,8 +8,8 @@ echo ""
 echo "Cloing Repository Temporarily"
 git clone $REPOSITORY_URL $TEMPORARY_DIRECTORY
 
-mkdir -p ~/.config/nvim
-mkdir -p ~/.config/tmux
+mkdir /home/ubuntu/.config/nvim
+mkdir /home/ubuntu/.config/tmux
 
 # echo ""
 # echo "Downloading NeoVim"
