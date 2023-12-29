@@ -17,14 +17,14 @@ curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.
 echo "Downloading TPM"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# Package Manager Detection
+# Package Manager Detection and Installation of TMUX and GCC
 if command -v apt > /dev/null; then
-    echo "Using apt to install TMUX"
+    echo "Using apt to install TMUX and GCC"
     sudo apt update
-    sudo apt install -y tmux
+    sudo apt install -y tmux gcc
 elif command -v yum > /dev/null; then
-    echo "Using yum to install TMUX"
-    sudo yum install -y tmux
+    echo "Using yum to install TMUX and GCC"
+    sudo yum install -y tmux gcc
 else
     echo "No suitable package manager found (apt or yum). Exiting."
     exit 1
