@@ -4,7 +4,7 @@ DESTINATION_DIRECTORY="/opt/nvim"
 REPOSITORY_URL="https://github.com/jaideep-recruitcrm/cli-god.git"
 TEMPORARY_DIRECTORY=$(mktemp -d)
 
-echo "Cloing Repository Temporarily"
+echo "Cloning Repository Temporarily"
 git clone $REPOSITORY_URL $TEMPORARY_DIRECTORY
 
 # Ensure the .config directory and its subdirectories exist
@@ -17,9 +17,18 @@ curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.
 echo "Downloading TPM"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-echo "Installing TMUX"
-sudo apt update
-sudo apt install -y tmux
+# Package Manager Detection
+if command -v apt > /dev/null; then
+    echo "Using apt to install TMUX"
+    sudo apt update
+    sudo apt install -y tmux
+elif command -v yum > /dev/null; then
+    echo "Using yum to install TMUX"
+    sudo yum install -y tmux
+else
+    echo "No suitable package manager found (apt or yum). Exiting."
+    exit 1
+fi
 
 # Copy the configuration files from the repository
 cp -r $TEMPORARY_DIRECTORY/nvim/* /home/ubuntu/.config/nvim
@@ -36,7 +45,11 @@ echo "Renaming extracted folder"
 sudo mv /opt/nvim-linux64 $DESTINATION_DIRECTORY
 
 echo "Updating .bashrc"
-echo "export NVIM_HOME=$DESTINATION_DIRECTORY" >> ~/.bashrc
-echo 'export PATH="$PATH:$NVIM_HOME/bin"' >> ~/.bashrc
+if ! grep -q 'export NVIM_HOME=$DESTINATION_DIRECTORY' ~/.bashrc; then
+    echo "export NVIM_HOME=$DESTINATION_DIRECTORY" >> ~/.bashrc
+fi
+if ! grep -q 'export PATH="$PATH:$NVIM_HOME/bin"' ~/.bashrc; then
+    echo 'export PATH="$PATH:$NVIM_HOME/bin"' >> ~/.bashrc
+fi
 
 echo "INSTALLATION COMPLETE"
