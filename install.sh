@@ -7,9 +7,6 @@ TEMPORARY_DIRECTORY=$(mktemp -d)
 echo ""
 echo "Cloing Repository Temporarily"
 git clone $REPOSITORY_URL $TEMPORARY_DIRECTORY
-cp -r $TEMPORARY_DIRECTORY/nvim ~/.config/nvim
-cp -r $TEMPORARY_DIRECTORY/tmux ~/.config/tmux
-rm -rf $TEMPORARY_DIRECTORY
 
 echo ""
 echo "Downloading NeoVim"
@@ -28,9 +25,15 @@ if [ -f /etc/os-release ]; then
   if [ "$ID" = "ubuntu" ] || [ "$ID" = "debian" ]; then
     sudo apt update
     sudo apt install -y tmux
+    cp -r $TEMPORARY_DIRECTORY/nvim /home/ubuntu/.config/nvim
+    cp -r $TEMPORARY_DIRECTORY/tmux ~/.config/tmux
+    rm -rf $TEMPORARY_DIRECTORY
   elif [ "$ID" = "amzn" ]; then
     sudo yum update
     sudo yum install -y tmux
+    cp -r $TEMPORARY_DIRECTORY/nvim /home/ec2-user/.config/nvim
+    cp -r $TEMPORARY_DIRECTORY/tmux /home/ec2-user/.config/tmux
+    rm -rf $TEMPORARY_DIRECTORY
   else
     echo "Unsupported OS: $ID"
     exit 1
