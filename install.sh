@@ -6,12 +6,13 @@ TEMPORARY_DIRECTORY=$(mktemp -d)
 
 echo ""
 echo "Cloing Repository Temporarily"
+git clone $REPOSITORY_URL $TEMPORARY_DIRECTORY
 cp -r $TEMPORARY_DIRECTORY/nvim ~/.config/nvim
 cp -r $TEMPORARY_DIRECTORY/tmux ~/.config/tmux
 rm -rf $TEMPORARY_DIRECTORY
 
 echo ""
-echo "Downloading NeoVim" 
+echo "Downloading NeoVim"
 curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz -o nvim-linux64.tar.gz
 
 echo ""
