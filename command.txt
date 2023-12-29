@@ -1,0 +1,1 @@
+curl -sL https://raw.githubusercontent.com/jaideep-recruitcrm/cli-god/main/install.sh | bash
