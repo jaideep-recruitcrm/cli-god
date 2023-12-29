@@ -8,6 +8,9 @@ echo ""
 echo "Cloing Repository Temporarily"
 git clone $REPOSITORY_URL $TEMPORARY_DIRECTORY
 
+mkdir -p ~/.config/nvim
+mkdir -p ~/.config/tmux
+
 # echo ""
 # echo "Downloading NeoVim"
 # curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz -o nvim-linux64.tar.gz
