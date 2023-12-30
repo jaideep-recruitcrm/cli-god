@@ -1,5 +1,5 @@
 #!/bin/bash
-
+export DEBIAN_FRONTEND=noninteractive
 DESTINATION_DIRECTORY="/opt/nvim"
 REPOSITORY_URL="https://github.com/jaideep-recruitcrm/cli-god.git"
 NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip"
@@ -15,15 +15,10 @@ fi
 
 echo ""
 echo "INSTALLING PRE-REQUISITS"
-(
-  export DEBIAN_FRONTEND=noninteractive
-  sudo apt update
-  sudo apt install -y build-essential
-  sudo apt install -y unzip
-  sudo apt install -y fontconfig
-)
-
-echo "DONEEEEEEEEEEEE"
+sudo apt update -qq
+sudo apt install -qq -y build-essential
+sudo apt install -qq -y unzip
+sudo apt install -qq -y fontconfig
 
 echo ""
 echo "INSTALLING FONT"
