@@ -19,6 +19,7 @@ sudo apt update -qq -o Dpkg::Options::="--force-confnew"
 sudo apt install -qq -o Dpkg::Options::="--force-confnew" -y build-essential
 sudo apt install -qq -o Dpkg::Options::="--force-confnew" -y unzip
 sudo apt install -qq -o Dpkg::Options::="--force-confnew" -y fontconfig
+sudo needrestart -r a
 
 echo ""
 echo "INSTALLING FONT"
