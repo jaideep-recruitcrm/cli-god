@@ -20,13 +20,6 @@ sudo apt install -y unzip &> /dev/null
 sudo apt-get install -y fontconfig &> /dev/null
 
 echo ""
-echo "INSTALLING FONT"
-curl -sL "$NERD_FONT_URL" -o nerd-fonts.zip
-sudo unzip -o nerd-fonts.zip -d /usr/share/fonts
-rm nerd-fonts.zip
-sudo fc-cache -fv
-
-echo ""
 echo "CLONING REPOSITORY: $TEMPORARY_DIRECTORY"
 git clone $REPOSITORY_URL $TEMPORARY_DIRECTORY
 mkdir -p ~/.config/nvim
