@@ -23,6 +23,8 @@ echo "INSTALLING PRE-REQUISITS"
   sudo apt install -y fontconfig
 )
 
+echo "DONEEEEEEEEEEEE"
+
 echo ""
 echo "INSTALLING FONT"
 curl -sL $NERD_FONT_URL --output nerd-fonts.zip
