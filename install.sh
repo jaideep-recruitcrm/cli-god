@@ -20,8 +20,8 @@ if [ -x "$(command -v yum)" ]; then
   sudo yum groupinstall -y "Development Tools"
 elif [ -x "$(command -v apt)" ]; then
   sudo apt update &> /dev/null
-  sudo apt install -y build-essential &> /dev/null
   sudo apt install -y ripgrep &> /dev/null
+  sudo apt install -y build-essential &> /dev/null
 else
   echo "ERROR: No supported package manager found"
   exit 1
