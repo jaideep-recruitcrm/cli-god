@@ -14,15 +14,15 @@ fi
 echo ""
 echo "INSTALLING PRE-REQUISITS"
 if [ -x "$(command -v yum)" ]; then
-  sudo yum update
-  sudo yum install -y git
-  sudo yum install -y tmux
+  sudo yum update &> /dev/null
+  sudo yum install -y git &> /dev/null
+  sudo yum install -y tmux &> /dev/null
 
-  sudo yum groupinstall -y "Development Tools"
+  sudo yum groupinstall -y "Development Tools" &> /dev/null
 
-  sudo yum isntall -y yum-utils
-  sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
-  sudo yum install -y ripgrep
+  sudo yum isntall -y yum-utils &> /dev/null
+  sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo &> /dev/null
+  sudo yum install -y ripgrep &> /dev/null
 elif [ -x "$(command -v apt)" ]; then
   sudo apt update &> /dev/null
   sudo apt install -y ripgrep &> /dev/null
