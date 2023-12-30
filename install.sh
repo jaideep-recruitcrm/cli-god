@@ -15,10 +15,11 @@ fi
 
 echo ""
 echo "INSTALLING PRE-REQUISITS"
-sudo apt update -qq -o Dpkg::Options::="--force-confnew"
-sudo apt install -qq -o Dpkg::Options::="--force-confnew" -y build-essential
-sudo apt install -qq -o Dpkg::Options::="--force-confnew" -y unzip
-sudo apt install -qq -o Dpkg::Options::="--force-confnew" -y fontconfig
+sudo apt-get update -qq -o Dpkg::Options::="--force-confnew"
+sudo apt-get install -qq -o Dpkg::Options::="--force-confnew" -y build-essential
+sudo apt-get install -qq -o Dpkg::Options::="--force-confnew" -y unzip
+sudo needrestart -r a
+sudo apt-get install -qq -o Dpkg::Options::="--force-confnew" -y fontconfig
 sudo needrestart -r a
 
 echo ""
