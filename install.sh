@@ -23,7 +23,7 @@ echo ""
 echo "INSTALLING FONT"
 curl -sL $NERD_FONT_URL -o nerd-fonts.zip
 sudo unzip nerd-fonts.zip -d /usr/share/fonts
-# rm nerd-fonts.zip
+rm nerd-fonts.zip
 fc-cache -fv
 
 echo ""
