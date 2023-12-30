@@ -7,14 +7,10 @@ NEOVIM_URL="https://github.com/neovim/neovim/releases/download/nightly/nvim-linu
 TMP_URL="https://github.com/tmux-plugins/tpm"
 TEMPORARY_DIRECTORY=$(mktemp -d)
 
-function clean_existing {
+if [ -d "$DESTINATION_DIRECTORY" ]; then
   rm -rf ~/.config/tmux
   rm -rf ~/.config/nvim
   sudo rm -rf $DESTINATION_DIRECTORY
-}
-
-if [ -d "$DESTINATION_DIRECTORY" ]; then
-  clean_existing
 fi
 
 echo ""
