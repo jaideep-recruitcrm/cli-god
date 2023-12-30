@@ -20,7 +20,7 @@ if [ -x "$(command -v yum)" ]; then
 
   sudo yum groupinstall -y "Development Tools" &> /dev/null
 
-  sudo yum isntall -y yum-utils &> /dev/null
+  sudo yum install -y yum-utils &> /dev/null
   sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo &> /dev/null
   sudo yum install -y ripgrep &> /dev/null
 elif [ -x "$(command -v apt)" ]; then
