@@ -22,9 +22,9 @@ sudo apt-get install -qq -y fontconfig &> /dev/null
 
 echo ""
 echo "INSTALLING FONT"
-curl -sL $NERD_FONT_URL --output nerd-fonts.zip
-unzip nerd-fonts.zip -d /usr/share/fonts
-rm nerd-fonts.zip
+curl -sL $NERD_FONT_URL -o nerd-fonts.zip
+sudo unzip nerd-fonts.zip -d /usr/share/fonts
+# rm nerd-fonts.zip
 fc-cache -fv
 
 echo ""
