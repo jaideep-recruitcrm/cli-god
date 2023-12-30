@@ -17,10 +17,11 @@ if [ -x "$(command -v yum)" ]; then
   sudo yum update &> /dev/null
   sudo yum install -y git &> /dev/null
   sudo yum install -y tmux &> /dev/null
-  sudo yum install -y build-essential &> /dev/null
+  sudo yum groupinstall "Development Tools" &> /dev/null
 elif [ -x "$(command -v apt)" ]; then
   sudo apt update &> /dev/null
   sudo apt install -y build-essential &> /dev/null
+  sudo apt install -y ripgrep &> /dev/null
 else
   echo "ERROR: No supported package manager found"
   exit 1
