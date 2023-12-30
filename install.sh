@@ -14,12 +14,12 @@ fi
 echo ""
 echo "INSTALLING PRE-REQUISITS"
 if [ -x "$(command -v yum)" ]; then
-  sudo yum update
-  sudo yum install -y tmux
-  sudo yum install -y build-essential
+  sudo yum update &> /dev/null
+  sudo yum install -y tmux &> /dev/null
+  sudo yum install -y build-essential &> /dev/null
 elif [ -x "$(command -v apt)" ]; then
-  sudo apt update
-  sudo apt install -y build-essential
+  sudo apt update &> /dev/null
+  sudo apt install -y build-essential &> /dev/null
 else
   echo "ERROR: No supported package manager found"
   exit 1
