@@ -1,1 +1,1 @@
-set guifont='Hack Nerd Font 11'
+set guifont=Hack\ Nerd\ Font\ 11
