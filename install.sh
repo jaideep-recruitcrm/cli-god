@@ -15,7 +15,7 @@ echo ""
 echo "INSTALLING PRE-REQUISITS"
 if [ -x "$(command -v yum)" ]; then
   sudo yum update &> /dev/null
-  sudo yum install git &> /dev/null
+  sudo yum install -y git &> /dev/null
   sudo yum install -y tmux &> /dev/null
   sudo yum install -y build-essential &> /dev/null
 elif [ -x "$(command -v apt)" ]; then
