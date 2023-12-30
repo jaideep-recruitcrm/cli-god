@@ -2,6 +2,9 @@
 
 DESTINATION_DIRECTORY="/opt/nvim"
 REPOSITORY_URL="https://github.com/jaideep-recruitcrm/cli-god.git"
+NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip"
+NEOVIM_URL="https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz"
+TMP_URL="https://github.com/tmux-plugins/tpm"
 TEMPORARY_DIRECTORY=$(mktemp -d)
 
 function clean_existing {
@@ -23,6 +26,13 @@ echo "INSTALLING PRE-REQUISITS"
 )
 
 echo ""
+echo "INSTALLING FONT"
+curl -sL $NERD_FONT_URL --output nerd-fonts.zip
+unzip nerd-fonts.zip -d /usr/share/fonts
+rm nerd-fonts.zip
+fc-cache -fv
+
+echo ""
 echo "CLONING REPOSITORY: $TEMPORARY_DIRECTORY"
 git clone $REPOSITORY_URL $TEMPORARY_DIRECTORY
 mkdir -p ~/.config/nvim
@@ -33,14 +43,14 @@ rm -rf $TEMPORARY_DIRECTORY
 
 echo ""
 echo "INSTALLING NEOVIM"
-curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz -o nvim-linux64.tar.gz
+curl -L "$NEOVIM_URL" -o nvim-linux64.tar.gz
 sudo tar -xzf nvim-linux64.tar.gz -C /opt/
 rm -rf nvim-linux64.tar.gz
 sudo mv /opt/nvim-linux64 $DESTINATION_DIRECTORY
 
 echo ""
 echo "INSTALLING TPM"
-git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+git clone "$TMP_URL" ~/.config/tmux/plugins/tpm
 
 echo ""
 echo "UPDATING ~/.bashrc"
