@@ -12,7 +12,7 @@ if [ -d "$DESTINATION_DIRECTORY" ]; then
   sudo rm -rf $DESTINATION_DIRECTORY
 fi
 
-if [ -x "$(commond -v yum)" ]; then
+if [ -x "$(command -v yum)" ]; then
   PACKAGE_MANAGER="sudo yum"
 elif [ -x "$(command -v apt)" ]; then
   PACKAGE_MANAGER="sudo apt"
