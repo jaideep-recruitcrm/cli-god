@@ -5,17 +5,13 @@ REPOSITORY_URL="https://github.com/jaideep-recruitcrm/cli-god.git"
 TEMPORARY_DIRECTORY=$(mktemp -d)
 
 function clean_existing {
-    rm -rf ~/.config/tmux
-    rm -rf ~/.config/nvim
-    sudo rm -rf $DESTINATION_DIRECTORY
+  rm -rf ~/.config/tmux
+  rm -rf ~/.config/nvim
+  sudo rm -rf $DESTINATION_DIRECTORY
 }
 
 if [ -d "$DESTINATION_DIRECTORY" ]; then
-    read -p "RE-INSTALL ? (y/n) " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        clean_existing
-    fi
+  clean_existing
 fi
 
 echo "Cloing Repository: $TEMPORARY_DIRECTORY"
