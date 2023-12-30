@@ -18,10 +18,7 @@ echo "INSTALLING PRE-REQUISITS"
 (
   export DEBIAN_FRONTEND=noninteractive
   sudo apt update
-  sudo apt install -y \
-    build-essential \
-    unzip \
-    fontconfig
+  sudo apt install -y build-essential unzip fontconfig
 )
 
 echo ""
