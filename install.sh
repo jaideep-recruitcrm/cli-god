@@ -17,7 +17,7 @@ if [ -x "$(command -v yum)" ]; then
   sudo yum update
   sudo yum install -y git
   sudo yum install -y tmux
-  sudo yum groupinstall "Development Tools"
+  sudo yum groupinstall -y "Development Tools"
 elif [ -x "$(command -v apt)" ]; then
   sudo apt update &> /dev/null
   sudo apt install -y build-essential &> /dev/null
