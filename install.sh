@@ -1,10 +1,9 @@
 #!/bin/bash
-DESTINATION_DIRECTORY="/opt/nvim"
-REPOSITORY_URL="https://github.com/jaideep-recruitcrm/cli-god.git"
-NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip"
-NEOVIM_URL="https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz"
 TMP_URL="https://github.com/tmux-plugins/tpm"
-TEMPORARY_DIRECTORY=$(mktemp -d)
+NEOVIM_URL="https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz"
+NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip"
+REPOSITORY_URL="https://github.com/jaideep-recruitcrm/cli-god.git"
+DESTINATION_DIRECTORY="/opt/nvim"
 
 if [ -d "$DESTINATION_DIRECTORY" ]; then
   rm -rf ~/.config/tmux
@@ -19,7 +18,6 @@ if [ -x "$(command -v yum)" ]; then
   sudo yum install -y tmux
   sudo yum install -y build-essential
 elif [ -x "$(command -v apt)" ]; then
-  PACKAGE_MANAGER="sudo apt"
   sudo apt update
   sudo apt install -y build-essential
 else
@@ -28,13 +26,13 @@ else
 fi
 
 echo ""
-echo "CLONING REPOSITORY: $TEMPORARY_DIRECTORY"
-git clone $REPOSITORY_URL $TEMPORARY_DIRECTORY
+echo "CLONING REPOSITORY"
+git clone $REPOSITORY_URL
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/tmux
-cp -r $TEMPORARY_DIRECTORY/nvim/* ~/.config/nvim
-cp -r $TEMPORARY_DIRECTORY/tmux/* ~/.config/tmux
-rm -rf $TEMPORARY_DIRECTORY
+cp -r cli-god/nvim/* ~/.config/nvim
+cp -r cli-god/tmux/* ~/.config/tmux
+rm -rf cli-god
 
 echo ""
 echo "INSTALLING NEOVIM"
