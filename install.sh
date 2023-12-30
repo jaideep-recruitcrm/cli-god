@@ -40,8 +40,15 @@ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 clean_up
 
-echo "Updating .bashrc"
-echo "export NVIM_HOME=$DESTINATION_DIRECTORY" >> ~/.bashrc
-echo 'export PATH="$PATH:$NVIM_HOME/bin"' >> ~/.bashrc
+echo "Updating ~/.bashrc"
+if ! grep -q "NVIM_HOME" ~/.bashrc; then
+  echo "NVIM_HOME=$DESTINATION_DIRECTORY" >> ~/.bashrc
+fi
+
+if ! grep -q "PATH=\"\$PATH:$NVIM_HOME/bin\"" ~/.bashrc; then
+  echo 'PATH="$PATH:$NVIM_HOME/bin"' >> ~/.bashrc
+fi
+
+source ~/.bashrc
 
 echo "INSTALLATION COMPLETE"
