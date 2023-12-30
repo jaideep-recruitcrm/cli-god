@@ -17,7 +17,12 @@ if [ -x "$(command -v yum)" ]; then
   sudo yum update
   sudo yum install -y git
   sudo yum install -y tmux
+
   sudo yum groupinstall -y "Development Tools"
+
+  sudo yum isntall -y yum-utils
+  sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+  sudo yum install -y ripgrep
 elif [ -x "$(command -v apt)" ]; then
   sudo apt update &> /dev/null
   sudo apt install -y ripgrep &> /dev/null
