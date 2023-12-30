@@ -23,10 +23,10 @@ fi
 
 echo ""
 echo "INSTALLING PRE-REQUISITS"
-"$PACKAGE_MANAGER" update &> /dev/null
-"$PACKAGE_MANAGER" install -y build-essential &> /dev/null
-"$PACKAGE_MANAGER" install -y unzip &> /dev/null
-"$PACKAGE_MANAGER" install -y fontconfig &> /dev/null
+"$PACKAGE_MANAGER" update # &> /dev/null
+"$PACKAGE_MANAGER" install -y build-essential # &> /dev/null
+"$PACKAGE_MANAGER" install -y unzip # &> /dev/null
+"$PACKAGE_MANAGER" install -y fontconfig # &> /dev/null
 
 echo ""
 echo "CLONING REPOSITORY: $TEMPORARY_DIRECTORY"
