@@ -1,1 +1,1 @@
-curl -sL https://raw.githubusercontent.com/jaideep-recruitcrm/cli-god/main/install.sh | bash
+curl -s "https://raw.githubusercontent.com/jaideep-recruitcrm/cli-god/main/install.sh" | bash

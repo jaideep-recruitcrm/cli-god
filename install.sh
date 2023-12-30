@@ -12,19 +12,20 @@ if [ -d "$DESTINATION_DIRECTORY" ]; then
   sudo rm -rf $DESTINATION_DIRECTORY
 fi
 
+echo ""
+echo "INSTALLING PRE-REQUISITS"
 if [ -x "$(command -v yum)" ]; then
-  PACKAGE_MANAGER="sudo yum"
+  sudo yum update
+  sudo yum install -y tmux
+  sudo yum install -y build-essential
 elif [ -x "$(command -v apt)" ]; then
   PACKAGE_MANAGER="sudo apt"
+  sudo apt update
+  sudo apt install -y build-essential
 else
   echo "ERROR: No supported package manager found"
   exit 1
 fi
-
-echo ""
-echo "INSTALLING PRE-REQUISITS"
-$PACKAGE_MANAGER update &> /dev/null
-$PACKAGE_MANAGER install -y build-essential &> /dev/null
 
 echo ""
 echo "CLONING REPOSITORY: $TEMPORARY_DIRECTORY"
