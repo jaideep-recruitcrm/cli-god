@@ -36,7 +36,6 @@ sudo tar -xzf nvim-linux64.tar.gz -C /opt/
 sudo mv /opt/nvim-linux64 $DESTINATION_DIRECTORY
 
 echo "Installing TMUX"
-sudo apt install -y tmux
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 clean_up
