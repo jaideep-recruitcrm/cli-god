@@ -12,12 +12,21 @@ if [ -d "$DESTINATION_DIRECTORY" ]; then
   sudo rm -rf $DESTINATION_DIRECTORY
 fi
 
+if [ -x "$(commond -v yum)" ]; then
+  PACKAGE_MANAGER="sudo yum"
+elif [ -x "$(command -v apt)" ]; then
+  PACKAGE_MANAGER="sudo apt"
+else
+  echo "ERROR: No supported package manager found"
+  exit 1
+fi
+
 echo ""
 echo "INSTALLING PRE-REQUISITS"
-sudo apt update &> /dev/null
-sudo apt install -y build-essential &> /dev/null
-sudo apt install -y unzip &> /dev/null
-sudo apt-get install -y fontconfig &> /dev/null
+"$PACKAGE_MANAGER" update &> /dev/null
+"$PACKAGE_MANAGER" install -y build-essential &> /dev/null
+"$PACKAGE_MANAGER" install -y unzip &> /dev/null
+"$PACKAGE_MANAGER" install -y fontconfig &> /dev/null
 
 echo ""
 echo "CLONING REPOSITORY: $TEMPORARY_DIRECTORY"
