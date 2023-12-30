@@ -21,10 +21,10 @@ sudo apt-get install -y fontconfig &> /dev/null
 
 echo ""
 echo "INSTALLING FONT"
-curl -sL $NERD_FONT_URL -o nerd-fonts.zip
+curl -sL "$NERD_FONT_URL" -o nerd-fonts.zip
 sudo unzip nerd-fonts.zip -d /usr/share/fonts
 rm nerd-fonts.zip
-fc-cache -fv
+sudo fc-cache -fv
 
 echo ""
 echo "CLONING REPOSITORY: $TEMPORARY_DIRECTORY"
