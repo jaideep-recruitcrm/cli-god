@@ -15,10 +15,10 @@ fi
 
 echo ""
 echo "INSTALLING PRE-REQUISITS"
-sudo apt update -qq
-sudo apt install -qq -y build-essential
-sudo apt install -qq -y unzip
-sudo apt install -qq -y fontconfig
+sudo apt update -qq -o Dpkg::Options::="--force-confnew"
+sudo apt install -qq -o Dpkg::Options::="--force-confnew" -y build-essential
+sudo apt install -qq -o Dpkg::Options::="--force-confnew" -y unzip
+sudo apt install -qq -o Dpkg::Options::="--force-confnew" -y fontconfig
 
 echo ""
 echo "INSTALLING FONT"
