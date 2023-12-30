@@ -4,36 +4,42 @@ DESTINATION_DIRECTORY="/opt/nvim"
 REPOSITORY_URL="https://github.com/jaideep-recruitcrm/cli-god.git"
 TEMPORARY_DIRECTORY=$(mktemp -d)
 
-echo "Cloing Repository Temporarily"
+function clean_existing {
+    rm -rf ~/.config/tmux
+    rm -rf ~/.config/nvim
+    sudo rm -rf $DESTINATION_DIRECTORY
+}
+
+function clean_up {
+    rm -rf nvim-linux64.tar.gz
+    rm -rf $TEMPORARY_DIRECTORY
+}
+
+if [ -d "$DESTINATION_DIRECTORY" ]; then
+    read -p "RE-INSTALL ? (y/n) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        clean_existing
+    fi
+fi
+
+echo "Cloing Repository: $TEMPORARY_DIRECTORY"
 git clone $REPOSITORY_URL $TEMPORARY_DIRECTORY
+mkdir -p ~/.config/nvim
+mkdir -p ~/.config/tmux
+cp -r $TEMPORARY_DIRECTORY/nvim/* ~/.config/nvim
+cp -r $TEMPORARY_DIRECTORY/tmux/* ~/.config/tmux
 
-# Ensure the .config directory and its subdirectories exist
-mkdir -p /home/ubuntu/.config/nvim
-mkdir -p /home/ubuntu/.config/tmux
-
-echo "Downloading NeoVim"
+echo "Instaling Neovim"
 curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz -o nvim-linux64.tar.gz
-
-echo "Downloading TPM"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+sudo tar -xzf nvim-linux64.tar.gz -C /opt/
+sudo mv /opt/nvim-linux64 $DESTINATION_DIRECTORY
 
 echo "Installing TMUX"
-sudo apt update
 sudo apt install -y tmux
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
-# Copy the configuration files from the repository
-cp -r $TEMPORARY_DIRECTORY/nvim/* /home/ubuntu/.config/nvim
-cp -r $TEMPORARY_DIRECTORY/tmux/* /home/ubuntu/.config/tmux
-
-# Clean up the temporary directory
-rm -rf $TEMPORARY_DIRECTORY
-
-echo "Extracting NeoVim to /opt/"
-sudo tar -xvzf nvim-linux64.tar.gz -C /opt/
-rm nvim-linux64.tar.gz
-
-echo "Renaming extracted folder"
-sudo mv /opt/nvim-linux64 $DESTINATION_DIRECTORY
+clean_up
 
 echo "Updating .bashrc"
 echo "export NVIM_HOME=$DESTINATION_DIRECTORY" >> ~/.bashrc
