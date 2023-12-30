@@ -14,10 +14,10 @@ fi
 echo ""
 echo "INSTALLING PRE-REQUISITS"
 if [ -x "$(command -v yum)" ]; then
-  sudo yum update
-  sudo yum install -y git
-  sudo yum install -y tmux
-  sudo yum groupinstall -y "Development Tools"
+  sudo yum update &> /dev/null
+  sudo yum install -y git &> /dev/null
+  sudo yum install -y tmux &> /dev/null
+  sudo yum groupinstall -y "Development Tools" &> /dev/null
 elif [ -x "$(command -v apt)" ]; then
   sudo apt update &> /dev/null
   sudo apt install -y build-essential &> /dev/null
