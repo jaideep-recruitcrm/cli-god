@@ -14,7 +14,15 @@ if [ -d "$DESTINATION_DIRECTORY" ]; then
   clean_existing
 fi
 
-echo "Cloing Repository: $TEMPORARY_DIRECTORY"
+echo ""
+echo "INSTALLING PRE-REQUISITS"
+(
+  sudo apt update
+  sudo apt install -y build-essential
+)
+
+echo ""
+echo "CLONING REPOSITORY: $TEMPORARY_DIRECTORY"
 git clone $REPOSITORY_URL $TEMPORARY_DIRECTORY
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/tmux
