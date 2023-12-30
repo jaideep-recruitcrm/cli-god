@@ -10,11 +10,6 @@ function clean_existing {
     sudo rm -rf $DESTINATION_DIRECTORY
 }
 
-function clean_up {
-    rm -rf nvim-linux64.tar.gz
-    rm -rf $TEMPORARY_DIRECTORY
-}
-
 if [ -d "$DESTINATION_DIRECTORY" ]; then
     read -p "RE-INSTALL ? (y/n) " -n 1 -r
     echo
@@ -29,18 +24,21 @@ mkdir -p ~/.config/nvim
 mkdir -p ~/.config/tmux
 cp -r $TEMPORARY_DIRECTORY/nvim/* ~/.config/nvim
 cp -r $TEMPORARY_DIRECTORY/tmux/* ~/.config/tmux
+rm -rf $TEMPORARY_DIRECTORY
 
-echo "Instaling Neovim"
+echo ""
+echo "INSTALLING NEOVIM"
 curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz -o nvim-linux64.tar.gz
 sudo tar -xzf nvim-linux64.tar.gz -C /opt/
+rm -rf nvim-linux64.tar.gz
 sudo mv /opt/nvim-linux64 $DESTINATION_DIRECTORY
 
-echo "Installing TMUX"
+echo ""
+echo "INSTALLING TPM"
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
-clean_up
-
-echo "Updating ~/.bashrc"
+echo ""
+echo "UPDATING ~/.bashrc"
 if ! grep -q "NVIM_HOME" ~/.bashrc; then
   echo "NVIM_HOME=$DESTINATION_DIRECTORY" >> ~/.bashrc
 fi
@@ -51,4 +49,5 @@ fi
 
 source ~/.bashrc
 
+echo ""
 echo "INSTALLATION COMPLETE"
