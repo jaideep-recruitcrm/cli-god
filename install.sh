@@ -62,7 +62,7 @@ if ! grep -q "PATH=\"\$PATH:$NVIM_HOME/bin\"" ~/.bashrc; then
   echo 'PATH="$PATH:$NVIM_HOME/bin"' >> ~/.bashrc
 fi
 
-source ~/.bashrc
+echo "RUN: source ~/.bashrc"
 
 echo ""
 echo "INSTALLATION COMPLETE"
