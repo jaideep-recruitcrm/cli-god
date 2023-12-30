@@ -32,3 +32,15 @@ require("lspconfig").lua_ls.setup {
     },
   },
 }
+
+require("lspconfig").pyright.setup {
+  on_attach = on_attach,
+  capabilites = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "standard"
+      }
+    }
+  }
+}

@@ -25,14 +25,21 @@ local plugins = {
   'rafamadriz/friendly-snippets',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
+  'mbbill/undotree',
   'neovim/nvim-lspconfig',
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.5',
     dependencies = { {'nvim-lua/plenary.nvim'} }
-  }
+  },
+  {
+    'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+  },
 }
 
-local opts = {}
+local opts = {
+  auto = true,
+}
 
 require("lazy").setup(plugins, opts)
